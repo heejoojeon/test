@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+    <div class="form-group">
+      <input
+        class="form-control input-lg"
+        id="id"
+        type="text"
+        placeholder="이메일"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control input-lg"
+        id="pw"
+        type="password"
+        placeholder="비밀번호"
+        required
+      />
+    </div>
+    <div class="form-group last">
+      <button
+        type="button"
+        class="btn btn-warning btn-block btn-lg"
+        onclick="getsignin()"
+        style="margin-top: 2rem"
+      >
+        확인
+      </button>
+    </div>
+    <script>
+      // js 코드 작성
+      function getsignin() {
+        const id = document.getElementById('id').value;
+        const pw = document.getElementById('pw').value;
+        if (id && pw) {
+          $.ajax({
+            type: 'POST',
+            url: '/signin',
+            data: {
+              id: id,
+              pw: pw,
+            },
+            success: function (response) {
+              alert('회원가입 성공했습니다!');
+              window.location.href = '/';
+            },
+          });
+        } else {
+          alert('전부 입력해주세요!');
+        }
+      }
+    </script>
+  </body>
+</html>
